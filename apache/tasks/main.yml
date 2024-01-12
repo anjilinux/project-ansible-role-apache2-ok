@@ -6,12 +6,17 @@
     apache_packages: "{{ apache_packages | list }}"  
   when: apache_packages is not defined 
 
-- include_tasks: "{{ ansible_os_family  }}-install.yml"  
+#- include_tasks: "{{ ansible_os_family  }}-install.yml"  
 
-- name: ensure apache has selected state and enabled on boot
-  service: 
-    name: "{{ apache_service }}"
-    state: "{{ apache_state }}"
-    enabled: true 
 
-    
+- name: test all INCLUDING FILES USING LOOP
+  include_tasks: "{{ item }}"
+  loop: 
+    - Debian-install.yml
+    - service.yml
+    - configure.yml
+  register: red  
+
+- name: OUT PUT DATA 
+  debug: 
+      var: red

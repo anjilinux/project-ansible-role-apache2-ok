@@ -6,7 +6,6 @@
 
 
 
-
 - name: ensure apache is installed on Debian 
   apt: name=apache2 state=present
   
@@ -18,7 +17,7 @@
   command:  curl localhost
   register: curl
 
-- debug: 
-    msg: "{{curl.stdout_lines}}"
+# - debug: 
+#     msg: "{{curl.stdout_lines}}"
 
   
